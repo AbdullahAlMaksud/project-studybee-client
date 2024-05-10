@@ -28,9 +28,8 @@ const HomeSection3 = () => {
 
     return (
         <div className="container mx-auto w-11/12 mb-10">
-            <h2 className="pb-10 text-center text-3xl font-bold text-orange-600">Extra Section 3</h2>
-
-            <section className="p-6 mx-auto bg-transparent rounded-xl shadow-md dark:bg-gray-800">
+            <h2 className="pb-10 text-center text-3xl font-bold text-blue-950 dark:text-blue-50">Extra Section 3</h2>
+            <section className="p-6 mx-auto rounded-sm shadow-md bg-blue-200/50 dark:bg-gray-800">
                 <h2 className="text-4xl text-center font-semibold text-gray-700 capitalize dark:text-white">Service Information</h2>
 
                 <form onSubmit={handleSubmit}>
