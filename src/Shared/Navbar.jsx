@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import DarkMode from "../utilities/DarkMode";
 import { MdClose, MdMenu } from "react-icons/md";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+
+import { Tooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
+
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
-
+    console.log('from nav', user)
     const mainMenu = <>
         <li>
             <Link>Products</Link>
@@ -20,10 +26,31 @@ const Navbar = () => {
             <Link>Dashboard</Link>
         </li>
     </>
+    const mobileMainMenu = <>
+        <li>
+            <Link>Products</Link>
+        </li>
+        <li>
+            <Link>About</Link>
+        </li>
+        <li>
+            <Link>FAQ</Link>
+        </li>
+        <li>
+            <Link>Dashboard</Link>
+        </li>
+        <div>
+            <img src={user?.photoURL} className=" h-12 rounded-full border-blue-950 border-2 hover:cursor-pointer" alt="" />
+        </div>
+    </>
 
     const handleDropdown = () => {
         setIsOpen(!isOpen);
     };
+
+    const handleLogOut = () =>{
+        logOut()
+    }
 
 
     return (
@@ -39,12 +66,31 @@ const Navbar = () => {
                         </ul>
                     </div>
 
+
+
                     <div className="flex flex-1 lg:flex-none items-center justify-end gap-2">
                         <DarkMode />
-
                         {/* Login & User */}
-                        <Link to={"/login"}><button className="px-5 bg-blue-800 rounded-md text-white py-2 uppercase text-sm font-semibold hover:bg-blue-900 active:scale-95 ">Login</button></Link>
 
+                        {!user &&
+                        <Link to={'/login'}>
+                        <button className="rounded-lg px-5 py-2 bg-blue-800 text-white">Log In</button>
+                        </Link>
+
+                        }
+                        {
+                            user &&
+                                <div>
+                                    <img id="profiletooltip" src={user?.photoURL} className="hidden lg:flex h-12 rounded-full border-blue-950 border-2 hover:cursor-pointer" alt="" />
+                                    <Tooltip anchorSelect="#profiletooltip" clickable>
+                                        <div className="flex flex-col justify-center items-center px-3 py-2">
+                                        <p>{user?.displayName}</p>
+                                        <button className="px-4 py-2 rounded-md border-2 border-red-800 my-2 shadow-red-800/80 shadow-md" onClick={handleLogOut} >LOG OUT</button>
+                                        </div>
+                                    </Tooltip>
+                                </div>
+                                
+                        }
                         {/* DropDown Menu Button */}
                         <div className="relative lg:hidden">
                             {
@@ -56,7 +102,7 @@ const Navbar = () => {
                                 <div className="absolute top-10 -right-8 bg-white dark:bg-slate-900 rounded shadow-lg mt-2 py-2 w-48">
                                     {/* Dropdown Items */}
                                     <ul className="px-5 py-2">
-                                        {mainMenu}
+                                        {mobileMainMenu}
                                     </ul>
                                 </div>
                             )}

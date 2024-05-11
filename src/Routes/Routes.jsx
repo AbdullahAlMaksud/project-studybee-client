@@ -14,7 +14,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('https://b9a11-study-bee-server.vercel.app/services')
+                loader: () => fetch(`${import.meta.env.VITE_SERVER}/services`)
             },
             {
                 path: '/login',
