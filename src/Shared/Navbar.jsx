@@ -27,22 +27,23 @@ const Navbar = () => {
 
 
     return (
-        <div className="fixed min-h-20 w-full bg-transparent backdrop-blur-md dark:text-white dark:bg-slate-900 rounded-b-sm shadow shadow-black/10">
-            <div className="container mx-auto">
+        <div className="fixed h-16 lg:min-h-20 w-full bg-transparent backdrop-blur-md dark:text-white dark:bg-slate-900 rounded-b-sm shadow shadow-black/10 z-50">
+            <div className="w-11/12  container mx-auto">
                 <div className="flex ">
-                    <div className="flex justify-start items-center h-full min-h-20">
-                        <h2 className="text-xl px-4">Navbar</h2>
+                    <div className="flex justify-start items-center h-16 lg:min-h-20">
+                        <Link className="text-2xl lg:text-3xl font-medium">Study<span className="text-blue-600">Bee</span></Link>
                     </div>
                     <div className="hidden lg:flex flex-1 items-center justify-center  min-h-20 pr-6">
                         <ul className="flex gap-5">
                             {mainMenu}
                         </ul>
                     </div>
-                    <div className="flex flex-1 lg:flex-none items-center justify-end  min-h-20">
+
+                    <div className="flex flex-1 lg:flex-none items-center justify-end gap-2">
                         <DarkMode />
 
                         {/* Login & User */}
-                        <Link><button className="mx-3 px-3 bg-blue-800 rounded-xl text-white py-1 uppercase text-sm font-semibold hover:bg-blue-900 active:scale-95 ">Login</button></Link>
+                        <Link to={"/login"}><button className="px-5 bg-blue-800 rounded-md text-white py-2 uppercase text-sm font-semibold hover:bg-blue-900 active:scale-95 ">Login</button></Link>
 
                         {/* DropDown Menu Button */}
                         <div className="relative lg:hidden">

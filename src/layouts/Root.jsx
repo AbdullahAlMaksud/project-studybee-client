@@ -5,7 +5,7 @@ import Footer from '../Shared/Footer';
 const Root = () => {
     return (
         <>
-            <div className='h-20'>
+            <div className='h-16 lg:h-20'>
                 <Navbar />
             </div>
             <div className='min-h-[calc(100vh-80px)]'>
