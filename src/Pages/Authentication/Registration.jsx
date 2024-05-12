@@ -1,12 +1,45 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Registration = () => {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state || '/'
+    const {
+        registerWithEmailAndPassword,
+        setUser,
+        updateUserInfo,
+        user, 
+        signInWithGoogole,
+    } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
 
     const handleShowPassword = e => {
         setShowPass(e.target.checked)
         console.log(showPass)
+    }
+
+    const handleRegistration = async e =>{
+        e.preventDefault()
+        const name = e.target.name.value;
+        const photo = e.target.photo.value;
+        const email = e.target.emailInput.value;
+        const password = e.target.password.value;
+        try{
+            const result = await registerWithEmailAndPassword(email, password)
+            await updateUserInfo(name, photo)
+            setUser({...result?.user, photoURL : photo, displayName: name})
+
+            navigate(from, {replace: true})
+            toast.success('Your Profie Created SuccessFully!')
+        }
+        catch(error){
+            console.log(error);
+            toast.error(error.messege);
+        }
+        console.log({name, photo, email, password})
     }
     return (
         <div>
@@ -53,18 +86,18 @@ const Registration = () => {
                                 </div>
                                 <div className="mt-8">
 
-                                    <form>
+                                    <form onSubmit={handleRegistration}>
                                         <div>
                                             <label className="block mb-2 text-gray-900 dark:text-gray-200">Full Name</label>
-                                            <input type="text" name="userName" placeholder="Abdur Rahman" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            <input type="text" name="name" placeholder="Abdur Rahman" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                         </div>
                                         <div className="mt-6">
                                             <label htmlFor="email" className="block mb-2 text-gray-900 dark:text-gray-200">Profile Photo URL</label>
-                                            <input type="text" name="userPhoto" id="email" placeholder="https://example.com/profile.png" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            <input type="text" name="photo" id="email" placeholder="https://example.com/profile.png" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                         </div>
                                         <div className="mt-6">
-                                            <label htmlFor="email" className="block mb-2 text-gray-900 dark:text-gray-200">Email Address</label>
-                                            <input type="email" name="email" id="email" placeholder="example@example.com" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                            <label  className="block mb-2 text-gray-900 dark:text-gray-200">Email Address</label>
+                                            <input type="email" name="emailInput" placeholder="example@example.com" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                         </div>
 
                                         <div className="mt-6">

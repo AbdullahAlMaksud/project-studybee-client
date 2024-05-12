@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 import PropTypes from 'prop-types'
 
@@ -11,14 +11,32 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    
     const signInWithGoogole = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider)
     }
 
+    const registerWithEmailAndPassword = (email, password)=>{
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const logInWithEmailAndPassword = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
     const logOut = () =>{
         setLoading(true);
         return signOut(auth)
+    }
+
+    const updateUserInfo = (name, photo) =>{
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photo
+        })
     }
 
     useEffect(() => {
@@ -28,7 +46,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
         })
         return () => {
-            unsubscribe();
+            return unsubscribe();
         }
     }, [])
 
@@ -36,7 +54,11 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         loading,
+        setUser,
         signInWithGoogole,
+        logInWithEmailAndPassword,
+        registerWithEmailAndPassword,
+        updateUserInfo,
         logOut
     }
     return (

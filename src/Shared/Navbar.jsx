@@ -24,10 +24,10 @@ const Navbar = () => {
 
     const mainMenu = <>
         <li>
-            <NavLink className={({isActive})=>isActive? 'border-b-2 border-blue-800 font-medium': 'hover:text-blue-600 hover:border-b hover:border-blue-800'} to={'/'}>Home</NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'border-b-2 border-blue-800 font-medium' : 'hover:text-blue-600 hover:border-b hover:border-blue-800'} to={'/'}>Home</NavLink>
         </li>
         <li>
-            <NavLink className={({isActive})=>isActive? 'border-b-2 border-blue-800 font-medium': 'hover:text-blue-600 hover:border-b hover:border-blue-800 '} to={'/services'}>All Services</NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'border-b-2 border-blue-800 font-medium' : 'hover:text-blue-600 hover:border-b hover:border-blue-800 '} to={'/services'}>All Services</NavLink>
         </li>
         <li>
             <NavLink to={'/about'}>About</NavLink>
@@ -40,28 +40,26 @@ const Navbar = () => {
 
     const mobileMainMenu = <>
         <div className="flex flex-col items-end justify-center py-2 text-xl">
-            <img src={user?.photoURL} className=" h-12 rounded-full border-blue-950 border-2 hover:cursor-pointer" alt="" />
+            <Link to={'/profile'}><img src={user?.photoURL} className=" h-12 rounded-full border-blue-950 border-2 hover:cursor-pointer" alt="" /></Link>
             <p className="font-hind font-semibold">{user?.displayName}</p>
         </div>
         <hr />
         <div className="flex flex-col my-3 gap-3">
+            <NavLink className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'} to={'/addServices'} >Add Service</NavLink>
+            <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'}>Manage Service</NavLink>
 
-                <NavLink className={({isActive})=>isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2': 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'} to={'/addServices'} >Add Service</NavLink>
-            
-                <NavLink to={'/'} className={({isActive})=>isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2': 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'}>Manage Service</NavLink>
-            
-                <NavLink to={'/'} className={({isActive})=>isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2': 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'}>Booked-Services</NavLink>
-            
-                <NavLink to={'/'} className={({isActive})=>isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2': 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'}>Service-To-Do</NavLink>
+            <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'}>Booked-Services</NavLink>
+
+            <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-lg pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-lg pl-2'}>Service-To-Do</NavLink>
         </div>
-           
+
 
         <hr className="" />
         <div className="flex items-center justify-center gap-1 my-3">
-            <NavLink to={'/'} className={({isActive})=>isActive ? "font-medium border-b-2 border-transparent border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip" : "font-medium border-b-2 border-transparent hover:border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip" }
-            
-            data-tip="Home"><MdHome className="text-xl" /></NavLink>
-            <NavLink to={'/services'} className={({isActive})=>isActive ? "font-medium border-b-2 border-transparent border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip" : "font-medium border-b-2 border-transparent hover:border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip" } data-tip="All Services"><MdMiscellaneousServices className="text-xl" /></NavLink>
+            <NavLink to={'/'} className={({ isActive }) => isActive ? "font-medium border-b-2 border-transparent border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip" : "font-medium border-b-2 border-transparent hover:border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip"}
+
+                data-tip="Home"><MdHome className="text-xl" /></NavLink>
+            <NavLink to={'/services'} className={({ isActive }) => isActive ? "font-medium border-b-2 border-transparent border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip" : "font-medium border-b-2 border-transparent hover:border-b-blue-900 hover:font-semibold p-1.5 rounded-lg dark:bg-gray-800 tooltip"} data-tip="All Services"><MdMiscellaneousServices className="text-xl" /></NavLink>
             <NavLink className="font-medium border-b-2 border-transparent tooltip tooltip-top hover:border-b-blue-900 hover:font-semibold rounded-lg" data-tip="Dark Mode"><DarkMode /></NavLink>
 
         </div>
@@ -108,7 +106,7 @@ const Navbar = () => {
                                 {
                                     !isOpen ? <div className="flex rounded-full border-2 gap-1 md:py-1 md:px-1 bg-blue-100 shadow-sm shadow-black/40">
                                         <button onClick={handleDropdown} className="font-semibold text-white bg-blue-950 px-3 md:px-4 rounded-full ">Dashboard</button>
-                                        <img src={user?.photoURL} className="rounded-full h-8 border-2 border-blue-900" />
+                                        <NavLink className={({isActive})=>isActive?`shadow-lg shadow-black rounded-full border-white`: undefined } to={'/profile'}><img src={user?.photoURL} className="rounded-full h-8 border-2 border-blue-900" /></NavLink>
                                     </div>
 
                                         : <div className="flex rounded-full border-2 gap-1 md:py-1 md:px-1 bg-blue-600 shadow-sm shadow-black/40">

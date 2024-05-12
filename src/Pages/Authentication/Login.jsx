@@ -5,10 +5,15 @@ import toast from "react-hot-toast";
 
 
 const Login = () => {
-    
+
     const navigate = useNavigate();
     const loaction = useLocation()
-    const { user, signInWithGoogole, loading } = useContext(AuthContext);
+    const { 
+        user, 
+        signInWithGoogole, 
+        loading, 
+        logInWithEmailAndPassword,
+    } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
 
     useEffect(() => {
@@ -23,11 +28,31 @@ const Login = () => {
         console.log(showPass)
     }
 
+    const loginHandler = async (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        const userInfo = { email, password }
+        console.log(userInfo)
+        try {
+            const result = await logInWithEmailAndPassword(email, password)
+            console.log('Login User', result.user)
+            navigate(from, {replace: true})
+            toast.success('Log In Successfull')
+
+        }
+        catch (error){
+            console.log(error)
+            toast.error(error?.message)
+        }
+    }
+
     const googleHandler = async () => {
         try {
             const result = await signInWithGoogole();
             console.log(result.user)
-            toast.success('Sign In Successfully')
+            toast.success('Log In Successfully')
             navigate(from, { replace: true })
         }
         catch (error) {
@@ -36,7 +61,9 @@ const Login = () => {
         }
     }
 
-
+    if(user || loading) {
+        return
+    }
     return (
         <div>
             <div className=" bg-white/20 backdrop-blur-md dark:bg-gray-900">
@@ -81,7 +108,7 @@ const Login = () => {
                             </div>
                             <div className="mt-8">
 
-                                <form>
+                                <form onSubmit={loginHandler}>
                                     <div>
                                         <label htmlFor="email" className="block mb-2 text-gray-900 dark:text-gray-200">Email Address</label>
                                         <input type="email" name="email" id="email" placeholder="example@example.com" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
