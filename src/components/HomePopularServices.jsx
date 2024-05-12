@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import ServicesCard from "../Shared/ServicesCard";
 
 const HomePopularServices = ({ services }) => {

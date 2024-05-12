@@ -1,6 +1,6 @@
 
 
-const HomeSection2 = ({ services }) => {
+const HomeSection2 = () => {
 
 
     return (

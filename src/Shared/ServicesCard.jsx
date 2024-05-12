@@ -1,9 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import profile from '../../public/profile.png'
+import { FaUser } from "react-icons/fa";
+import { FaMapLocationDot } from "react-icons/fa6";
+
 
 const ServicesCard = ({ service }) => {
-    const { imgURL, serviceName, description, userPhoto, userName } = service;
+    const { imgURL, serviceName, description, providerPhoto, providerName, serviceArea } = service;
     return (
         <div>
             <div className='border-b-2 shadow-md relative'>
@@ -12,14 +14,14 @@ const ServicesCard = ({ service }) => {
                 </div>
 
                 <div className='p-5 flex flex-col items-end'>
-                    <div className='flex border-b border-0 rounded-xl w-full mb-3 px-1 py-0 mt-5 text-xs shadow-md'>
+                    <div className='flex border-b border-0 rounded-md w-full mb-3 px-1 py-0 mt-5 text-xs shadow-md'>
                         <div className='flex pb-2 w-full p-1 rounded-full  items-center justify-between'>
                             <div>
-                                <p className='font-semibold'>Posted By:</p>
-                                <p className='font-hind rounded-full dark:text-white text-center'>{userName}</p>
+                                <p className='font-hind rounded-full dark:text-white text-center flex gap-2 items-center mb-1'><span className='font-semibold text-base'><FaUser /></span> {providerName}</p>
+                                <p className='font-hind rounded-full dark:text-white text-center flex gap-2 items-center'><span className='font-semibold text-base'><FaMapLocationDot /></span> {serviceArea}</p>
                             </div>
                             <div>
-                            <img className='rounded-full w-10 h-10 object-cover object-right' src={userPhoto ? userPhoto : profile} alt="" />
+                            <img className='rounded-full w-10 h-10 object-cover object-right' src={providerPhoto ? providerPhoto : profile} alt="" />
                             </div>
                         </div>
                     </div>
@@ -32,7 +34,7 @@ const ServicesCard = ({ service }) => {
 
                     <div>
                         <Link to={`/services/${service._id}`}>
-                        <button className='btn w-full my-3'>View Details</button>
+                        <button className=' bg-blue-800 text-white text-sm font-semibold py-2 shadow-md active:shadow-none rounded-sm hover:bg-blue-900 shadow-black/60 w-full my-3'>View Details</button>
                         
                         </Link>
                     </div>

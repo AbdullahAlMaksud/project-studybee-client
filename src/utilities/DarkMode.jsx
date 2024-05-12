@@ -23,7 +23,7 @@ const DarkMode = () => {
         <div className="flex items-center justify-center">
             <button
                 onClick={handleDarkMode}
-                className={`rounded-md w-8 h-8 flex items-center justify-center focus:outline-none ${darkMode ? 'bg-gray-800' : 'bg-gray-100'
+                className={`rounded-sm w-9 h-9 flex items-center justify-center focus:outline-none ${darkMode ? 'bg-gray-800' : 'bg-gray-100'
                     }`}
             >
                 <div
