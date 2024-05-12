@@ -1,9 +1,15 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 
 const Profile = () => {
-    const { user, updateUserInfo } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const [newUser, setNewUser] = useState({ ...user });
+    const successToast = () => toast.success('Profile Updated');
+    const errorToast = () => toast.error('Profile Updated Failed');
+
 
     const [edit, setEdit] = useState(!true);
 
@@ -11,7 +17,6 @@ const Profile = () => {
         setEdit(!edit)
         console.log(edit)
     }
-
 
     const handleUpdateProfile = e => {
         e.preventDefault()
@@ -22,10 +27,17 @@ const Profile = () => {
             displayName: name,
             photoURL: photo,
 
-        }
-        updateUserInfo(name, photo)
-        
-        console.log(updateInfo)
+        } 
+        updateProfile(user, updateInfo)
+        .then(()=>{
+           setNewUser(updateInfo);
+           console.log('Update Complete') 
+           successToast()
+        })
+        .catch((error)=>{
+            console.log(error)
+            errorToast();
+        })
     }
 
 

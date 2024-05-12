@@ -1,0 +1,47 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import profile from '../../public/profile.png'
+
+const ServicesCard = ({ service }) => {
+    const { imgURL, serviceName, description, userPhoto, userName } = service;
+    return (
+        <div>
+            <div className='border-b-2 shadow-md relative'>
+                <div className='shadow-blue-800 border-b-8  border-blue-500 bg-blue-100/20 px-6 pt-6 rounded-sm'>
+                    <img className='object-cover w-full h-36 rounded-sm border-white border-4 border-b-0' src={imgURL} alt="" />
+                </div>
+
+                <div className='p-5 flex flex-col items-end'>
+                    <div className='flex border-b border-0 rounded-xl w-full mb-3 px-1 py-0 mt-5 text-xs shadow-md'>
+                        <div className='flex pb-2 w-full p-1 rounded-full  items-center justify-between'>
+                            <div>
+                                <p className='font-semibold'>Posted By:</p>
+                                <p className='font-hind rounded-full dark:text-white text-center'>{userName}</p>
+                            </div>
+                            <div>
+                            <img className='rounded-full w-10 h-10 object-cover object-right' src={userPhoto ? userPhoto : profile} alt="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                    <div>
+                        <h2 className='text-2xl font-bold  pb-2'>{serviceName}</h2>
+                        <p className=''>{description.slice(0, 100)}...</p>
+                    </div>
+
+                    <div>
+                        <Link to={`/services/${service._id}`}>
+                        <button className='btn w-full my-3'>View Details</button>
+                        
+                        </Link>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
+};
+
+export default ServicesCard;

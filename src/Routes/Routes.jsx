@@ -7,6 +7,7 @@ import Registration from "../Pages/Authentication/Registration";
 import AllServices from "../Pages/AllServices";
 import AddService from "../Pages/AddService";
 import Profile from "../Pages/Authentication/Profile";
+import ServiceDetails from "../Pages/ServiceDetails";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: '/addServices',
                 element: <AddService/>
+            },
+            {
+                path: '/services:id',
+                element: <ServiceDetails/>
             }
         ]
     },
