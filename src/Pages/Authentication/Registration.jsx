@@ -15,6 +15,7 @@ const Registration = () => {
         signInWithGoogole,
     } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
+    
 
     const handleShowPassword = e => {
         setShowPass(e.target.checked)
@@ -27,6 +28,23 @@ const Registration = () => {
         const photo = e.target.photo.value;
         const email = e.target.emailInput.value;
         const password = e.target.password.value;
+        const passwordToast = () => toast.error('Password must have 6 charecter');
+        const passwordToast2 = () => toast.error('Password must contain 1 LowerCase Letter');
+        const passwordToast3 = () => toast.error('Password must contain 1 UpperCase Letter');
+        const upperCase = /[A-Z]/;
+        const lowerCase = /[a-z]/;
+        if (password.length < 6) {
+            passwordToast()
+            return;
+        }
+        else if (!upperCase.test(password)) {
+            passwordToast3()
+            return;
+        }
+        else if (!lowerCase.test(password)) {
+            passwordToast2()
+            return;
+        }
         try{
             const result = await registerWithEmailAndPassword(email, password)
             await updateUserInfo(name, photo)
