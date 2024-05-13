@@ -49,7 +49,7 @@ const Navbar = () => {
         <hr />
         <div className="flex flex-col my-3 gap-3">
             <NavLink className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'} to={'/addServices'} >Add Service</NavLink>
-            <NavLink to={'/services/manage-services'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Manage Service</NavLink>
+            <NavLink to={`/services/manage-services/${user?.email}`} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Manage Service</NavLink>
 
             <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Booked-Services</NavLink>
 

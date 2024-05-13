@@ -10,6 +10,11 @@ import Profile from "../Pages/Authentication/Profile";
 import ServiceDetails from "../Pages/ServiceDetails";
 import BookingServices from "../Pages/BookingServices";
 import ManageService from "../Pages/ManageService";
+import UpdateServices from "../Pages/UpdateServices";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+
+
 
 const router = createBrowserRouter([
     {
@@ -53,9 +58,14 @@ const router = createBrowserRouter([
                 loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             },
             {
-                path: '/services/manage-services',
+                path: `/services/manage-services/:email`,
                 element: <ManageService/>,
-                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/servicesByYou/${params.id}`)
+                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/servicesByYou/${params.email}`)
+            },
+            {
+                path: 'managed-service/update-service/:id',
+                element: <UpdateServices/>,
+                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             }
         ]
     },

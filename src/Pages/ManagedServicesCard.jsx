@@ -33,7 +33,7 @@ const ManagedServicesCard = ({ service }) => {
                     </div>
 
                     <div className='flex justify-between'>
-                        <Link className=' bg-blue-800 text-white text-sm font-semibold py-2 shadow-inner active:shadow-none rounded-sm hover:bg-green-900 shadow-black/60 w-1/3 my-3 flex justify-center items-center' to={`/services/${service._id}`}>
+                        <Link to={`/managed-service/update-service/${service._id}`} className=' bg-blue-800 text-white text-sm font-semibold py-2 shadow-inner active:shadow-none rounded-sm hover:bg-green-900 shadow-black/60 w-1/3 my-3 flex justify-center items-center'>
                         <button>Update</button>
                         </Link>
                         <button className=' bg-pink-800 text-white text-sm font-semibold py-2 shadow-inner active:shadow-none rounded-sm hover:bg-pink-900 shadow-black/60 w-1/3 my-3'>Delete</button>

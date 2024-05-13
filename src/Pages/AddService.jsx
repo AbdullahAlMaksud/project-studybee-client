@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 
 
 const AddService = () => {
@@ -29,6 +30,12 @@ const AddService = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                if(data.acknowledged){
+                    toast.success('Your Services Added!')
+                }
+                else{
+                    toast.error('Failed! Try Again.')
+                }
             })
     }
     return (
