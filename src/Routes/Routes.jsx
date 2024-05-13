@@ -58,9 +58,8 @@ const router = createBrowserRouter([
                 loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             },
             {
-                path: `/services/manage-services/:email`,
+                path: `/services/manage-services/`,
                 element: <ManageService/>,
-                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/servicesByYou/${params.email}`)
             },
             {
                 path: 'managed-service/update-service/:id',

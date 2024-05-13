@@ -1,9 +1,19 @@
 import { useLoaderData } from 'react-router-dom';
 import ManagedServicesCard from './ManagedServicesCard';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const ManageService = () => {
-    const services = useLoaderData();
-    console.log(services)
+    const [services, setService] = useState([])
+    const { user } = useContext(AuthContext)
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_SERVER}/servicesByYou/${user?.email}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setService(data);
+                console.log(data);
+            });
+    }, [user])
     
     return (
         <div className='container mx-auto w-11/12 mb-10'>
