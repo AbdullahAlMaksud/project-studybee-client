@@ -33,7 +33,7 @@ const BookingServices = () => {
         console.log(bookedService)
 
 
-        fetch(`${import.meta.env.VITE_SERVER}/services/booked`, {
+        fetch(`${import.meta.env.VITE_SERVER}/bookedService`, {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(bookedService)
@@ -45,47 +45,47 @@ const BookingServices = () => {
     }
 
     return (
-        <div className='w-11/12 container mx-auto bg-transparent'>
+        <div className='lg:w-11/12 container mx-auto bg-transparent'>
             <form onSubmit={handlePurchase}>
                 <div>
-                    <img src={imgURL} alt="" className='h-80 object-cover w-full rounded-sm' />
+                    <img src={imgURL} alt="" className='h-40 md:h-80 object-cover w-full rounded-sm' />
                 </div>
 
                 <div className='bg-teal-800/5'>
                     <div className='grid grid-cols-1 md:grid-cols-2 p-10 gap-4'>
-                        <div className='rounded-sm'>
+                        <div className='rounded-sm  col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Services Id</span>
                             <input type="text" name="id" defaultValue={_id} disabled className='w-full py-1 pl-3 border-white border bg-black/5 rounded-md' />
                         </div>
-                        <div className='rounded-sm '>
+                        <div className='rounded-sm col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Services Name</span>
                             <input type="text" name="name" defaultValue={serviceName} disabled className='w-full py-1 pl-3 border-white border bg-black/5 rounded-md' />
                         </div>
-                        <div className='rounded-sm'>
+                        <div className='rounded-sm col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Provider Name</span>
                             <input type="text" name="name" defaultValue={providerName} disabled className='w-full py-1 pl-3 border-white border bg-black/5 rounded-md' />
                         </div>
 
-                        <div className='rounded-sm'>
+                        <div className='rounded-sm col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Provider Email:</span>
                             <input type="text" name="name" defaultValue={providerEmail} disabled className='w-full py-1 pl-3 border-white border bg-black/5 rounded-md' />
                         </div>
 
-                        <div className='rounded-sm'>
+                        <div className='rounded-sm  col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Current User Email</span>
                             <input type="text" name="name" defaultValue={user?.email} disabled className='w-full py-1 pl-3 border-white border bg-black/5 rounded-md' />
                         </div>
-                        <div className='rounded-sm'>
+                        <div className='rounded-sm  col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Current User Name</span>
                             <input type="text" name="name" defaultValue={user?.displayName} disabled className='w-full py-1 pl-3 border-white border bg-black/5 rounded-md' />
                         </div>
 
-                        <div className='rounded-sm'>
+                        <div className='rounded-sm col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Price:</span>
                             <input type="number" name="newPrice" value={price} className='w-full py-1 pl-3 border-white border bg-black/5 rounded-md' disabled />
                         </div>
 
-                        <div className='rounded-sm'>
+                        <div className='rounded-sm  col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Service Taking Date:</span>
                             <input type="date" name="date" className='w-full py-1 pl-3 border-blue-500 shadow-md border bg-white/60 rounded-md focus:border-0' />
                         </div>
