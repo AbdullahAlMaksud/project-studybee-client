@@ -1,7 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const BookingServices = () => {
     const { user } = useContext(AuthContext)
@@ -9,6 +12,9 @@ const BookingServices = () => {
     const { _id, imgURL, serviceName,
         serviceArea, price, description, providerEmail, providerPhoto, providerName } = service;
     console.log(user)
+
+    // const [startDate, setStartDate] = useState(new Date());
+    // console.log(startDate)
 
 
     const handlePurchase = e => {
@@ -92,6 +98,8 @@ const BookingServices = () => {
                         <div className='rounded-sm  col-span-2 md:col-span-1'>
                             <span className='text-lg font-semibold '>Service Taking Date:</span>
                             <input type="date" name="date" className='w-full py-1 pl-3 border-blue-500 shadow-md border bg-white/60 rounded-md focus:border-0' />
+                            {/* 
+                            <DatePicker type="date" className='w-full py-1 pl-3 border-blue-500 shadow-md border bg-white/60 rounded-md focus:border-0' format="MM/dd/y" selected={startDate} onChange={(date) => setStartDate(date)} /> */}
                         </div>
 
 

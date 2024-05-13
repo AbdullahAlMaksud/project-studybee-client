@@ -9,6 +9,7 @@ import AddService from "../Pages/AddService";
 import Profile from "../Pages/Authentication/Profile";
 import ServiceDetails from "../Pages/ServiceDetails";
 import BookingServices from "../Pages/BookingServices";
+import ManageService from "../Pages/ManageService";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
                 path: '/services/booking-services/:id',
                 element: <BookingServices/>,
                 loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
+            },
+            {
+                path: '/services/manage-services',
+                element: <ManageService/>,
+                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/servicesByYou/${params.id}`)
             }
         ]
     },
