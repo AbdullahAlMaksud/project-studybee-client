@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import HomeBanner from '../components/HomeBanner';
 import HomePopularServices from '../components/HomePopularServices';
 import HomeSection1 from '../components/HomeSection1';
@@ -9,6 +10,9 @@ const Home = () => {
     const services = useLoaderData()
     return (
         <div>
+            <Helmet>
+                <title>StudyBee | Empowering Education, Guided by Teachers, at StudyBee!</title>
+            </Helmet>
             <HomeBanner />
             <HomePopularServices  services={services} />
             <HomeSection1 />

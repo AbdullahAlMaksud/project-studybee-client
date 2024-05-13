@@ -61,6 +61,7 @@ const Registration = () => {
     }
     return (
         <div>
+            <title>StudyBee | Registration</title>
             <div>
                 <div className=" bg-white/20 backdrop-blur-md dark:bg-gray-900/10 py-10 md:py-0">
                     <div className="flex justify-center min-h-screen">

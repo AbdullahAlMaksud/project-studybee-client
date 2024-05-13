@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import DarkMode from "../utilities/DarkMode";
 import { MdClose, MdHome, MdMenu, MdMiscellaneousServices } from "react-icons/md";
 import { useContext, useState } from "react";
@@ -11,9 +11,12 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     console.log('from nav', user)
+    const navigate = useNavigate();
+
 
     const handleLogOut = () => {
-        logOut()
+        logOut();
+        navigate('/')
     }
 
 

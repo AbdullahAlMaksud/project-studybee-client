@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 
 const ServiceDetails = () => {
@@ -9,6 +10,9 @@ const ServiceDetails = () => {
     console.log(job)
     return (
         <div className="w-11/12 container mx-auto min-h-[calc(100vh-200px) my-10">
+            <Helmet>
+                <title>StudyBee | {serviceName} - {providerName}</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
                 <div className="md:col-span-8 bg-white/10 rounded-sm backdrop-blur-lg shadow-md ">
                     <img className="h-40 md:h-72 object-cover w-full rounded-sm p-2" src={imgURL} alt="" />
@@ -29,9 +33,9 @@ const ServiceDetails = () => {
                     <div className="px-6 lg:px-10 pb-10">
                         <h3 className=" text-blue-950 dark:text-blue-100 font-semibold text-sm py-1 w-2/3 pl-2 pr-4 rounded-sm border-l-4 border-blue-950 dark:border-blue-300">Description:</h3>
                         <p>{description}</p>
-                    <Link to={`/services/booking-services/${_id}`}>
-                    <div className="mt-10 bg-blue-600 text-white w-full text-center uppercase shadow-xl shadow-black/30 py-2">Book Now</div>
-                    </Link>
+                        <Link to={`/services/booking-services/${_id}`}>
+                            <div className="mt-10 bg-blue-600 text-white w-full text-center uppercase shadow-xl shadow-black/30 py-2">Book Now</div>
+                        </Link>
                     </div>
                 </div>
                 <div className="md:col-span-4 bg-white/10 rounded-sm backdrop-blur-lg shadow-md h-fit sticky">

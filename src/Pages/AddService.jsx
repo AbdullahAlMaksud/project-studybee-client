@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 
 const AddService = () => {
@@ -32,6 +33,9 @@ const AddService = () => {
     }
     return (
         <div className="container mx-auto w-11/12 my-10 rounded-lg">
+            <Helmet>
+                <title>StudyBee | Add Your Service</title>
+            </Helmet>
             <section className="px-20 py-14 mx-auto rounded-sm shadow-md bg-blue-200/50 dark:bg-gray-800/30">
                 <h2 className="text-4xl text-center font-semibold text-gray-700 capitalize dark:text-white pb-10">Add Your Services</h2>
 

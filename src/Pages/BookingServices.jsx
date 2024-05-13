@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const BookingServices = () => {
     const { user } = useContext(AuthContext)
@@ -46,6 +47,9 @@ const BookingServices = () => {
 
     return (
         <div className='lg:w-11/12 container mx-auto bg-transparent'>
+            <Helmet>
+                <title>StudyBee | Purchase {serviceName} - {providerName}</title>
+            </Helmet>
             <form onSubmit={handlePurchase}>
                 <div>
                     <img src={imgURL} alt="" className='h-40 md:h-80 object-cover w-full rounded-sm' />

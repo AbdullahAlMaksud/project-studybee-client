@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const Profile = () => {
@@ -43,6 +44,9 @@ const Profile = () => {
 
     return (
         <div className="container mx-auto max-w-2xl backdrop-blur-md bg-white/30 dark:bg-black/20 flex justify-center items-center min-h-[calc(100vh-200px)] md:my-5 relative rounded-md">
+            <Helmet>
+                <title>StudyBee | Welcome, {user?.displayName}! - This is your profile!</title>
+            </Helmet>
             <div className=" absolute md:top-10 top-1 right-1 md:right-10">
                 <label className="label cursor-pointer">
                     <span className="label-text mr-4 dark:text-white">Edit</span>
