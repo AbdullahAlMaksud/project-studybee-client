@@ -11,6 +11,7 @@ import ServiceDetails from "../Pages/ServiceDetails";
 import BookingServices from "../Pages/BookingServices";
 import ManageService from "../Pages/ManageService";
 import UpdateServices from "../Pages/UpdateServices";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile/>
+                element: <PrivateRoute><Profile/></PrivateRoute>
             },
             {
                 path: '/services',
@@ -41,25 +42,25 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addServices',
-                element: <AddService/>
+                element: <PrivateRoute><AddService/></PrivateRoute>
             },
             {
                 path: '/services/:id',
-                element: <ServiceDetails/>,
+                element: <PrivateRoute><ServiceDetails/></PrivateRoute>,
                 loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             },
             {
                 path: '/services/booking-services/:id',
-                element: <BookingServices/>,
+                element: <PrivateRoute><BookingServices/></PrivateRoute>,
                 loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             },
             {
                 path: `/services/managed-services`,
-                element: <ManageService/>,
+                element: <PrivateRoute><ManageService/></PrivateRoute>,
             },
             {
                 path: '/services/managed-service/update-service/:id',
-                element: <UpdateServices/>,
+                element: <PrivateRoute><UpdateServices/></PrivateRoute>,
                 loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             }
         ]

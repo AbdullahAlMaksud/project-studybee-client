@@ -14,7 +14,7 @@ const Home = () => {
                 <title>StudyBee | Empowering Education, Guided by Teachers, at StudyBee!</title>
             </Helmet>
             <HomeBanner />
-            <HomePopularServices  services={services} />
+            <HomePopularServices  servicesFromHome={services} />
             <HomeSection1 />
             <HomeSection2 />
             <HomeSection3 />

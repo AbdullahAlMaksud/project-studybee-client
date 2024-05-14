@@ -8,10 +8,10 @@ const Login = () => {
 
     const navigate = useNavigate();
     const loaction = useLocation()
-    const { 
-        user, 
-        signInWithGoogole, 
-        loading, 
+    const {
+        user,
+        signInWithGoogole,
+        loading,
         logInWithEmailAndPassword,
     } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
@@ -21,6 +21,7 @@ const Login = () => {
             navigate('/')
         }
     }, [navigate, user])
+    
     const from = loaction.state || '/'
 
     const handleShowPassword = e => {
@@ -38,11 +39,11 @@ const Login = () => {
         try {
             const result = await logInWithEmailAndPassword(email, password)
             console.log('Login User', result.user)
-            navigate(from, {replace: true})
+            navigate(from, { replace: true })
             toast.success('Log In Successfull')
 
         }
-        catch (error){
+        catch (error) {
             console.log(error)
             toast.error(error?.message)
         }
@@ -61,7 +62,7 @@ const Login = () => {
         }
     }
 
-    if(user || loading) {
+    if (user || loading) {
         return
     }
     return (
