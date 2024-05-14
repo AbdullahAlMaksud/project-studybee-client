@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 
 const Login = () => {
-
     const navigate = useNavigate();
     const loaction = useLocation()
     const {
@@ -21,7 +20,7 @@ const Login = () => {
             navigate('/')
         }
     }, [navigate, user])
-    
+
     const from = loaction.state || '/'
 
     const handleShowPassword = e => {
@@ -65,6 +64,8 @@ const Login = () => {
     if (user || loading) {
         return
     }
+
+
     return (
         <div>
             <title>StudyBee | Login</title>

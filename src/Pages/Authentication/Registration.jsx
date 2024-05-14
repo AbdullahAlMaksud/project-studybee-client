@@ -11,18 +11,17 @@ const Registration = () => {
         registerWithEmailAndPassword,
         setUser,
         updateUserInfo,
-        user, 
+        user,
         signInWithGoogole,
     } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
-    
 
     const handleShowPassword = e => {
         setShowPass(e.target.checked)
         console.log(showPass)
     }
 
-    const handleRegistration = async e =>{
+    const handleRegistration = async e => {
         e.preventDefault()
         const name = e.target.name.value;
         const photo = e.target.photo.value;
@@ -45,20 +44,21 @@ const Registration = () => {
             passwordToast2()
             return;
         }
-        try{
+        try {
             const result = await registerWithEmailAndPassword(email, password)
             await updateUserInfo(name, photo)
-            setUser({...result?.user, photoURL : photo, displayName: name})
+            setUser({ ...result?.user, photoURL: photo, displayName: name })
 
-            navigate(from, {replace: true})
+            navigate(from, { replace: true })
             toast.success('Your Profie Created SuccessFully!')
         }
-        catch(error){
+        catch (error) {
             console.log(error);
             toast.error(error.messege);
         }
-        console.log({name, photo, email, password})
+        console.log({ name, photo, email, password })
     }
+
     return (
         <div>
             <title>StudyBee | Registration</title>
@@ -81,9 +81,7 @@ const Registration = () => {
                                 <div className="text-center">
                                     <div className="flex justify-center mx-auto mt-3 lg:mt-0 text-gray-900 dark:text-gray-300 text-2xl font-semibold">
                                         <h2>Welcome to Study<span className="text-blue-600">Bee!</span></h2>
-                                        {/* <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="" /> */}
                                     </div>
-                                    {/* <p className="mt-1 text-gray-900 dark:text-gray-300 lg:text-xl">Login to access your account</p> */}
                                 </div>
 
                                 <a href="#" className="flex items-center justify-center px-6 py-3 mt-4 text-gray-900 transition-colors duration-300 transform border rounded-md dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900 border-gray-500 hover:border-gray-50 dark:hover:border-gray-600">
@@ -115,7 +113,7 @@ const Registration = () => {
                                             <input type="text" name="photo" id="email" placeholder="https://example.com/profile.png" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                         </div>
                                         <div className="mt-6">
-                                            <label  className="block mb-2 text-gray-900 dark:text-gray-200">Email Address</label>
+                                            <label className="block mb-2 text-gray-900 dark:text-gray-200">Email Address</label>
                                             <input type="email" name="emailInput" placeholder="example@example.com" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-900 dark:bg-gray-900/10 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                                         </div>
 

@@ -12,6 +12,7 @@ import BookingServices from "../Pages/BookingServices";
 import ManageService from "../Pages/ManageService";
 import UpdateServices from "../Pages/UpdateServices";
 import PrivateRoute from "./PrivateRoute";
+import BookedServerByMe from "../Pages/BookedServerByMe";
 
 const router = createBrowserRouter([
     {
@@ -26,42 +27,47 @@ const router = createBrowserRouter([
             },
             {
                 path: '/login',
-                element:<Login/>
+                element: <Login />
             },
             {
                 path: '/registration',
-                element: <Registration/>
+                element: <Registration />
             },
             {
                 path: '/profile',
-                element: <PrivateRoute><Profile/></PrivateRoute>
+                element: <PrivateRoute><Profile /></PrivateRoute>
             },
             {
                 path: '/services',
-                element: <AllServices/>
+                element: <AllServices />
             },
             {
                 path: '/addServices',
-                element: <PrivateRoute><AddService/></PrivateRoute>
+                element: <PrivateRoute><AddService /></PrivateRoute>
             },
             {
                 path: '/services/:id',
-                element: <PrivateRoute><ServiceDetails/></PrivateRoute>,
-                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
+                element: <PrivateRoute><ServiceDetails /></PrivateRoute>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             },
             {
                 path: '/services/booking-services/:id',
-                element: <PrivateRoute><BookingServices/></PrivateRoute>,
-                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
+                element: <PrivateRoute><BookingServices /></PrivateRoute>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
             },
             {
                 path: `/services/managed-services`,
-                element: <PrivateRoute><ManageService/></PrivateRoute>,
+                element: <PrivateRoute><ManageService /></PrivateRoute>,
             },
             {
                 path: '/services/managed-service/update-service/:id',
-                element: <PrivateRoute><UpdateServices/></PrivateRoute>,
-                loader: ({params})=>fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
+                element: <PrivateRoute><UpdateServices /></PrivateRoute>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_SERVER}/services/${params.id}`)
+            },
+            {
+                path: 'services/my-booked-services',
+                element: <PrivateRoute><BookedServerByMe /></PrivateRoute>
+
             }
         ]
     },

@@ -6,8 +6,8 @@ const ServiceDetails = () => {
     const job = useLoaderData()
     const { _id, imgURL, serviceName,
         serviceArea, price, description, providerEmail, providerPhoto, providerName } = job;
-
-    console.log(job)
+    // console.log(job)
+    
     return (
         <div className="w-11/12 container mx-auto min-h-[calc(100vh-200px) my-10">
             <Helmet>

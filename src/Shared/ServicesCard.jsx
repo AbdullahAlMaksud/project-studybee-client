@@ -21,23 +21,23 @@ const ServicesCard = ({ service }) => {
                                 <p className='font-hind rounded-full dark:text-white text-center flex gap-2 items-center'><span className='font-semibold text-base'><FaMapLocationDot /></span> {serviceArea}</p>
                             </div>
                             <div>
-                            <img className='rounded-full w-10 h-10 object-cover object-right' src={providerPhoto ? providerPhoto : profile} alt="" />
+                                <img className='rounded-full w-10 h-10 object-cover object-right' src={providerPhoto ? providerPhoto : profile} alt="" />
                             </div>
                         </div>
                     </div>
 
                     <div>
-                    <div>
-                        <h2 className='text-2xl font-bold  pb-2'>{serviceName}</h2>
-                        <p className=''>{description.slice(0, 100)}...</p>
-                    </div>
+                        <div>
+                            <h2 className='text-2xl font-bold  pb-2'>{serviceName}</h2>
+                            <p className=''>{description.slice(0, 100)}...</p>
+                        </div>
 
-                    <div>
-                        <Link to={`/services/${service._id}`}>
-                        <button className=' bg-blue-800 text-white text-sm font-semibold py-2 shadow-md active:shadow-none rounded-sm hover:bg-blue-900 shadow-black/60 w-full my-3'>View Details</button>
-                        
-                        </Link>
-                    </div>
+                        <div>
+                            <Link to={`/services/${service._id}`}>
+                                <button className=' bg-blue-800 text-white text-sm font-semibold py-2 shadow-md active:shadow-none rounded-sm hover:bg-blue-900 shadow-black/60 w-full my-3'>View Details</button>
+
+                            </Link>
+                        </div>
                     </div>
                 </div>
 

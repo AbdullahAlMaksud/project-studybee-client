@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -8,14 +8,14 @@ const UpdateServices = () => {
     const { _id,
         serviceName, imgURL, serviceArea, price, description, providerEmail, providerPhoto, providerName
     } = services;
-    // console.log('form upadate', services)
-
     const [img, setImg] = useState(imgURL);
+    
     const handleImage = e => {
         const newimf = e.target.value;
         setImg(newimf)
         // console.log('maksud', img)
     }
+    // console.log('form upadate', services)
 
     const handleUpdate = e => {
         e.preventDefault();
@@ -28,7 +28,6 @@ const UpdateServices = () => {
         const providerEmail = services.providerEmail;
         const providerPhoto = services.providerPhoto;
         const providerName = services.providerName;
-
         const upadatedService = {serviceName, serviceArea, imgURL, price, description, providerEmail, providerPhoto, providerName}
         console.log(upadatedService)
 
@@ -39,7 +38,7 @@ const UpdateServices = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
+            // console.log(data)
             if(data.modifiedCount){
                 Swal.fire({
                     title: "Done",
@@ -50,10 +49,9 @@ const UpdateServices = () => {
         })
         
     }
+    // console.log(img)
+    // console.log(serviceName)
 
-
-    console.log(img)
-    console.log(serviceName)
     return (
         <div className='w-11/12 mx-auto container bg-black/10 pt-10'>
             <Helmet>

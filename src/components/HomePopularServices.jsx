@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 const HomePopularServices = ({ servicesFromHome }) => {
     const services = [...servicesFromHome].reverse();
-
     // console.log(services, "from home")
+
     return (
         <div className='container mx-auto w-11/12 mb-10'>
             <h2 className="pb-10 text-center text-3xl font-bold text-blue-950 dark:text-blue-50 -rotate-2 bg-[]"> Popular Servicces</h2>

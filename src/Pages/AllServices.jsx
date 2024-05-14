@@ -1,22 +1,18 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ServicesCard from '../Shared/ServicesCard';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const AllServices = () => {
-
-    const [cardPerPage, setCardPerPage] = useState(6);
+    const cardPerPage = 6;
     const [currentPage, setCurrentPage] = useState(1);
     const [count, setCount] = useState(0)
-
     const [search, setSearch] = useState('');
     const [searchText, setSearchText] = useState('')
-
     const [displeyServices, setDisplayServices] = useState([])
     const services = [...displeyServices].reverse();
-    
-
 
     useEffect(() => {
         const getData = async () => {
@@ -42,6 +38,7 @@ const AllServices = () => {
         console.log(value)
         setCurrentPage(value)
     }
+
     const handleSearch = e => {
         e.preventDefault()
         setSearch(searchText);
@@ -51,16 +48,19 @@ const AllServices = () => {
 
     return (
         <div className='container mx-auto w-11/12 my-10'>
+            <Helmet>
+                <title>StudyBee | All Services </title>
+            </Helmet>
             <h2 className='text-4xl text-center font-bold mb-10 font-poppins'>All Services</h2>
 
             <div className='w-full'>
                 <form onSubmit={handleSearch}>
                     <div className='flex justify-center items-center'>
                         <input
-                        className='lg:w-1/3 w-full pb-2 bg-transparent border-b-2 border-b-black dark:border-blue-300 focus:outline-0  placeholder:text-xl dark:placeholder:text-white/50  placeholder:text-black text-2xl font-semi' 
-                        onChange={e => setSearchText(e.target.value)} 
-                        value={searchText} type="text" name='search' 
-                        placeholder='Find your services...' />
+                            className='lg:w-1/3 w-full pb-2 bg-transparent border-b-2 border-b-black dark:border-blue-300 focus:outline-0  placeholder:text-xl dark:placeholder:text-white/50  placeholder:text-black text-2xl font-semi'
+                            onChange={e => setSearchText(e.target.value)}
+                            value={searchText} type="text" name='search'
+                            placeholder='Find your services...' />
                         <button ><FaMagnifyingGlass /> </button>
                     </div>
                 </form>
@@ -75,15 +75,15 @@ const AllServices = () => {
 
 
             <div className='w-full flex justify-center items-center flex-wrap my-10'>
-            <div className='flex gap-5'>
-                <button className='flex justify-center items-center gap-2 px-3 rounded-md border-blue-300 dark:border-white w-32 border-b-2' disabled={currentPage === 1} onClick={() => { handlePagination(currentPage - 1) }}><span><FaArrowLeft/></span>Previous</button>
+                <div className='flex gap-5'>
+                    <button className='flex justify-center items-center gap-2 px-3 rounded-md border-blue-300 dark:border-white w-32 border-b-2' disabled={currentPage === 1} onClick={() => { handlePagination(currentPage - 1) }}><span><FaArrowLeft /></span>Previous</button>
 
-                {
-                    pages.map((buttonNumber) => <button onClick={() => handlePagination(buttonNumber)} className={`hidded ${currentPage === buttonNumber ? 'bg-blue-400' : ''} btn btn-circle`} key={buttonNumber}>{buttonNumber}</button>)
-                }
+                    {
+                        pages.map((buttonNumber) => <button onClick={() => handlePagination(buttonNumber)} className={`hidded ${currentPage === buttonNumber ? 'bg-blue-400' : ''} btn btn-circle`} key={buttonNumber}>{buttonNumber}</button>)
+                    }
 
-                <button className='flex justify-center items-center gap-2 px-3 w-32 rounded-md border-blue-300 dark:border-white border-b-2' disabled={currentPage === numberOfPages} onClick={() => handlePagination(currentPage + 1)}>Next<span><FaArrowRight/></span></button>
-            </div>
+                    <button className='flex justify-center items-center gap-2 px-3 w-32 rounded-md border-blue-300 dark:border-white border-b-2' disabled={currentPage === numberOfPages} onClick={() => handlePagination(currentPage + 1)}>Next<span><FaArrowRight /></span></button>
+                </div>
             </div>
         </div>
     );

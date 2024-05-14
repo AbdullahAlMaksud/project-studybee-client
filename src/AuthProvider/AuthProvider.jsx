@@ -11,13 +11,13 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    
+
     const signInWithGoogole = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider)
     }
 
-    const registerWithEmailAndPassword = (email, password)=>{
+    const registerWithEmailAndPassword = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
@@ -27,12 +27,12 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const logOut = () =>{
+    const logOut = () => {
         setLoading(true);
         return signOut(auth)
     }
 
-    const updateUserInfo = (name, photo) =>{
+    const updateUserInfo = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo

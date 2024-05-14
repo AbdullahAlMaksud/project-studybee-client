@@ -10,12 +10,12 @@ const Footer = () => {
                         <div>
                             <h2 className="text-3xl font-bold text-center md:text-left">Study<span className="text-blue-600">Bee</span></h2>
                             <p className="pt-1 pb-4 text-center md:text-left">Dhaka, Bangladesh</p>
-                            
+
                             <div className="flex gap-6 text-xl mb-5 justify-center md:justify-normal">
                                 <a href="tel:01767211795"><FaPhone /></a>
                                 <a href="mailto:maksud.workspace@gmail.com"><FaEnvelope /></a>
                                 <a href="https://facebook.com/maksud51"><FaFacebook /></a>
-                                
+
                                 <a href="https://github.com/AbdullahAlMaksud"><FaGithub /></a>
                                 <a href="https://linkedin.com/in/AbdullahAlMaksud"><FaLinkedin /></a>
                                 <a href="https://x.xcom/aamaksud"><FaTwitter /></a>

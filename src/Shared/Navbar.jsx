@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import DarkMode from "../utilities/DarkMode";
-import { MdClose, MdHome, MdMenu, MdMiscellaneousServices } from "react-icons/md";
+import { MdHome, MdMiscellaneousServices } from "react-icons/md";
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
@@ -13,17 +13,14 @@ const Navbar = () => {
     console.log('from nav', user)
     const navigate = useNavigate();
 
-
     const handleLogOut = () => {
         logOut();
         navigate('/')
     }
 
-
     const handleDropdown = () => {
         setIsOpen(!isOpen);
     };
-
 
     const mainMenu = <>
         <li>
@@ -40,7 +37,6 @@ const Navbar = () => {
         </li>
     </>
 
-
     const mobileMainMenu = <>
         <div className="flex flex-col items-end justify-center py-2 text-xl">
             <Link to={'/profile'}><img src={user?.photoURL} className=" h-12 rounded-full border-blue-950 border-2 hover:cursor-pointer" alt="" /></Link>
@@ -51,7 +47,7 @@ const Navbar = () => {
             <NavLink className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'} to={'/addServices'} >Add Service</NavLink>
             <NavLink to={`/services/managed-services`} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Manage Service</NavLink>
 
-            <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Booked-Services</NavLink>
+            <NavLink to={'services/my-booked-services'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Booked-Services</NavLink>
 
             <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Service-To-Do</NavLink>
         </div>
@@ -70,10 +66,6 @@ const Navbar = () => {
             <button onClick={handleLogOut} className="bg-blue-700 text-white w-full py-2 rounded-sm">Log out</button>
         </div>
     </>
-
-
-
-
 
     return (
         <div className="fixed font-poppins h-16 lg:min-h-20 w-full bg-transparent backdrop-blur-md dark:text-white dark:backdrop-blur-xl rounded-b-sm shadow shadow-black/10 z-50">
@@ -109,7 +101,7 @@ const Navbar = () => {
                                 {
                                     !isOpen ? <div className="flex rounded-sm border gap-1 md:py-0.5 md:px-0.5 bg-blue-900/30 shadow-sm shadow-black/40">
                                         <button onClick={handleDropdown} className="font-semibold text-white bg-blue-950 px-3 md:px-4 rounded-sm ">Dashboard</button>
-                                        <NavLink className={({isActive})=>isActive?`shadow-lg shadow-black rounded-sm border-white`: undefined } to={'/profile'}><img src={user?.photoURL} className="rounded-sm h-8 border-2 border-blue-900" /></NavLink>
+                                        <NavLink className={({ isActive }) => isActive ? `shadow-lg shadow-black rounded-sm border-white` : undefined} to={'/profile'}><img src={user?.photoURL} className="rounded-sm h-8 border-2 border-blue-900" /></NavLink>
                                     </div>
 
                                         : <div className="flex rounded-sm border border-white/40 gap-1 md:py-0.5 md:px-0.5 bg-blue-950/60 shadow-md shadow-black/40">

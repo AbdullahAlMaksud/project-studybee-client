@@ -11,7 +11,6 @@ const Profile = () => {
     const successToast = () => toast.success('Profile Updated');
     const errorToast = () => toast.error('Profile Updated Failed');
 
-
     const [edit, setEdit] = useState(!true);
 
     const handleEdit = () => {
@@ -28,19 +27,18 @@ const Profile = () => {
             displayName: name,
             photoURL: photo,
 
-        } 
+        }
         updateProfile(user, updateInfo)
-        .then(()=>{
-           setNewUser(updateInfo);
-           console.log('Update Complete') 
-           successToast()
-        })
-        .catch((error)=>{
-            console.log(error)
-            errorToast();
-        })
+            .then(() => {
+                setNewUser(updateInfo);
+                console.log('Update Complete')
+                successToast()
+            })
+            .catch((error) => {
+                console.log(error)
+                errorToast();
+            })
     }
-
 
     return (
         <div className="container mx-auto max-w-2xl backdrop-blur-md bg-white/30 dark:bg-black/20 flex justify-center items-center min-h-[calc(100vh-200px)] md:my-5 relative rounded-md">
@@ -77,7 +75,7 @@ const Profile = () => {
                     </label>
                     <input className="ml-2 dark:bg-blue-950 col-span-9 " type="text" defaultValue={user?.email} disabled />
                 </div>
-                <input className={edit?`bg-blue-600 text-white dark:bg-blue-500 px-10 py-3 rounded-xl md:min-w-96 disabled:bg-gray-500`: `hidden`} type="submit" value="Update" disabled={!edit} />
+                <input className={edit ? `bg-blue-600 text-white dark:bg-blue-500 px-10 py-3 rounded-xl md:min-w-96 disabled:bg-gray-500` : `hidden`} type="submit" value="Update" disabled={!edit} />
 
             </form>
 

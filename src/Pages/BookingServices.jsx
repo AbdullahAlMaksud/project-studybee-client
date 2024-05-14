@@ -1,26 +1,23 @@
-import React, { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { Helmet } from 'react-helmet-async';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from 'sweetalert2';
 
 
 const BookingServices = () => {
     const { user } = useContext(AuthContext)
     const service = useLoaderData()
-    const { _id, imgURL, serviceName,
-        serviceArea, price, description, providerEmail, providerPhoto, providerName } = service;
+    const { _id, imgURL, serviceName, price, providerEmail, providerName } = service;
     console.log(user)
 
     // const [startDate, setStartDate] = useState(new Date());
     // console.log(startDate)
 
-
     const handlePurchase = e => {
         e.preventDefault()
         const form = e.target;
-
         const serviceId = _id;
         const serviceName = service.serviceName;
         const serviceImage = service.imgURL;
@@ -39,7 +36,6 @@ const BookingServices = () => {
         }
         console.log(bookedService)
 
-
         fetch(`${import.meta.env.VITE_SERVER}/bookedService`, {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -48,6 +44,13 @@ const BookingServices = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Done",
+                        text: "You have succesfully book this service!",
+                        icon: 'success'
+                    })
+                }
             })
     }
 
@@ -101,8 +104,6 @@ const BookingServices = () => {
                             {/* 
                             <DatePicker type="date" className='w-full py-1 pl-3 border-blue-500 shadow-md border bg-white/60 rounded-md focus:border-0' format="MM/dd/y" selected={startDate} onChange={(date) => setStartDate(date)} /> */}
                         </div>
-
-
 
                         <div className='rounded-sm col-span-2'>
                             <span className='text-lg font-semibold '>Special Instraction:</span>
