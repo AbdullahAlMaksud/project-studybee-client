@@ -11,10 +11,6 @@ import ServiceDetails from "../Pages/ServiceDetails";
 import BookingServices from "../Pages/BookingServices";
 import ManageService from "../Pages/ManageService";
 import UpdateServices from "../Pages/UpdateServices";
-import { useContext } from "react";
-import { AuthContext } from "../AuthProvider/AuthProvider";
-
-
 
 const router = createBrowserRouter([
     {
