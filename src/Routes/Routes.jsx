@@ -14,6 +14,8 @@ import UpdateServices from "../Pages/UpdateServices";
 import PrivateRoute from "./PrivateRoute";
 import BookedServerByMe from "../Pages/BookedServerByMe";
 import ServiceTODO from "../Pages/ServiceTODO";
+import FAQ from "../Pages/FAQ";
+import About from "../Pages/About";
 
 const router = createBrowserRouter([
     {
@@ -73,6 +75,14 @@ const router = createBrowserRouter([
             {
                 path: 'services/service-to-do',
                 element: <PrivateRoute><ServiceTODO/></PrivateRoute>
+            },
+            {
+                path: '/faq',
+                element: <FAQ/>
+            },
+            {
+                path: '/about',
+                element: <About/>
             }
         ]
     },

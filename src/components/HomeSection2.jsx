@@ -7,6 +7,8 @@ const HomeSection2 = ({services}) => {
                 <div className="flex flex-col items-center justify-center ">
                     <div className="stat-title dark:text-gray-300">Total Services</div>
                     <div className="stat-value">{services.length}</div>
+                    
+                    
                     <div className="stat-desc dark:text-blue-100">May 15th - Till now</div>
                 </div>
 

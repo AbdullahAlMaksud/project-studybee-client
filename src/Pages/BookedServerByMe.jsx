@@ -21,13 +21,13 @@ const BookedServerByMe = () => {
     return (
         <div className='w-11/12 container mx-auto my-10'>
             {
-                bookedServices == [] && <div className='flex flex-col justify-center items-center min-h-[calc(100vh-850px)] gap-2 '>
+                bookedServices.length === 0 && <div className='flex flex-col justify-center items-center min-h-[calc(100vh-850px)] gap-2 '>
                     <FaRegSadTear className='text-7xl opacity-30' />
                     <h2 className='font-bold opacity-50'>Sorry! You have no booked services yet!</h2>
                 </div>
             }
 
-            <section className={bookedServices == [] && "hidden" || "container px-4 mx-auto"}>
+            <section className={bookedServices.length === 0 && "hidden" || "container px-4 mx-auto"}>
                 <h2 className='text-3xl font-bold text-center my-10'>My Booked Service</h2>
                 <div className="flex flex-col">
                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

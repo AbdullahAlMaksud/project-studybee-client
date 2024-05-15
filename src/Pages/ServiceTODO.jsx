@@ -2,10 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import axios from 'axios';
 import { FaRegSadTear } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceToDo = () => {
     const [bookedServices, setBookServices] = useState([]);
+    const servicesOltStatus = bookedServices.map(service => (service.serviceStatus)).toString();
+    const [newServiceStatus, setNewServicesStatus] = useState('')
 
+    const serId = bookedServices.map(service => (service._id));
+    // console.log(serId)
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
@@ -15,16 +22,52 @@ const ServiceToDo = () => {
         }
         getData()
     }, [user])
+    
+    useEffect(() => {
+        setNewServicesStatus(servicesOltStatus)
+    }, [servicesOltStatus])
+
+    // console.log('this is from state', newServiceStatus)
+
+
+
+
+    const handleStatus = (e) => {
+        // e.preventDefault()
+        const working = e.target.value;
+        // console.log(e._id)
+        // console.log(working)
+        setNewServicesStatus(working)
+        const data ={working}
+        console.log(newServiceStatus)
+
+        fetch(`${import.meta.env.VITE_SERVER}/booking/${serId}`, {
+            method: 'PATCH',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    toast.success('Service Status Has been Changed.')
+                }
+            })
+    }
+
+
 
     return (
         <div className='w-11/12 container mx-auto my-10'>
+            <Helmet>
+                <title>StudyBee | Service To Do</title>
+            </Helmet>
             {
                 bookedServices.length === 0 && <div className='flex flex-col justify-center items-center min-h-[calc(100vh-850px)] gap-2 '>
                     <FaRegSadTear className='text-7xl opacity-30' />
                     <h2 className='font-bold opacity-50'>Sorry! You have no services to do yet!</h2>
                 </div>
             }
-
             <section className={bookedServices.length === 0 && "hidden" || "container px-4 mx-auto"}>
                 <h2 className='text-3xl font-bold text-center my-10'>My Service TO-DO</h2>
                 <div className="flex flex-col">
@@ -102,9 +145,19 @@ const ServiceToDo = () => {
                                                         </div>
                                                     </td>
                                                     <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                        <div className={services.serviceStatus == 'pending' && "inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 capitalize dark:bg-gray-800" || "inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-yellow-500 bg-yellow-100/60 capitalize dark:bg-gray-800"}>
-                                                            <h2 className="text-sm font-normal">{(services.serviceStatus)}</h2>
-                                                        </div>
+                                                        <select onChange={handleStatus} className={newServiceStatus == 'pending' && "inline-flex items-center px-3 py-0.5 rounded-full gap-x-2 text-red-500 bg-red-100/60 capitalize dark:bg-gray-800" || "inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-black-600 bg-black-100/90 capitalize dark:bg-gray-800"} defaultValue={services.serviceStatus} >
+
+
+                                                            <option defaultValue={'pending'} disabled={newServiceStatus === "pending"}>
+                                                                pending
+                                                            </option>
+                                                            <option value={'working'} disabled={newServiceStatus === "working"}>
+                                                                working
+                                                            </option>
+                                                            <option value={'complete'} disabled={newServiceStatus === "complete"}>
+                                                                complete
+                                                            </option>
+                                                        </select>
                                                     </td>
                                                     <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                         <div className="flex items-center gap-x-6">
