@@ -1,9 +1,9 @@
 
 const HomeSection3 = () => {
     return (
-        <>
-            <h2>Home Section 3</h2>
-        </>
+        <div className="w-11/12 container mx-auto my-10">
+            <h2 className="text-center">Contact and Subscription</h2>
+        </div>
     );
 };
 

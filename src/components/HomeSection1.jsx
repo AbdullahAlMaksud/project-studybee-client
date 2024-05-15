@@ -1,8 +1,8 @@
 
 const HomeSection1 = () => {
     return (
-        <div>
-            <h2>Extra Section 1</h2>
+        <div className="w-11/12 container mx-auto my-10">
+            <h2 className="text-center">Banner</h2>
         </div>
     );
 };

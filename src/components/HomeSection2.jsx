@@ -1,9 +1,9 @@
 
 const HomeSection2 = () => {
     return (
-        <>
-            <h2>HomeSection2</h2>
-        </>
+        <div className="w-11/12 container mx-auto my-10">
+            <h2 className="text-center">Stats</h2>
+        </div>
     );
 };
 
