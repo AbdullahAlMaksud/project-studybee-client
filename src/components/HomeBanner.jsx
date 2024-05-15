@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const HomeBanner = ({services}) => {
     return (
-        <div className="-mt-20 pt-20 bg-cover bg-bottom h-96 md:h-[500px] lg:h-[600px] bg-[url('../public/banner-bg.jpg')] mb-10">
+        <div className="-mt-20 pt-20 bg-cover bg-bottom h-96 md:h-[500px] lg:h-[600px] dark:bg-black bg-[url('../public/banner-bg.jpg')] mb-10">
             <div className="w-11/12 container mx-auto h-full mb-32 flex justify-between">
 
                 <div className='w-full py-5'>

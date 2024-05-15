@@ -16,7 +16,7 @@ const Home = () => {
             <HomeBanner services={services} />
             <HomePopularServices servicesFromHome={services} />
             <HomeSection1 />
-            <HomeSection2 />
+            <HomeSection2 services={services} />
             <HomeSection3 />
         </div>
     );

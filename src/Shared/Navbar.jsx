@@ -72,7 +72,7 @@ const Navbar = () => {
             <div className="w-11/12  container mx-auto">
                 <div className="flex ">
                     <div className="flex justify-start items-center h-16 lg:min-h-20">
-                        <Link className="text-2xl lg:text-3xl font-medium">Study<span className="text-blue-600">Bee</span></Link>
+                        <Link className="text-2xl lg:text-3xl font-medium">Study<span className="text-white dark:text-slate-800">Bee</span></Link>
                     </div>
                     <div className="hidden lg:flex flex-1 items-center justify-center  min-h-20 pr-6">
                         <ul className="flex gap-5">

@@ -24,23 +24,23 @@ const Footer = () => {
                         <div>
                             <ul className="flex flex-wrap justify-center gap-4 mb-5">
                                 <li>
-                                    <Link className="hover:text-blue-600">Home</Link>
+                                    <Link to={'/'} className="hover:text-blue-600">Home</Link>
                                 </li>
 
                                 <li>
-                                    <Link className="hover:text-blue-600">Services</Link>
+                                    <Link to={'/services'} className="hover:text-blue-600">Services</Link>
                                 </li>
 
                                 <li>
-                                    <Link className="hover:text-blue-600">About</Link>
+                                    <Link to={'/about'} className="hover:text-blue-600">About</Link>
                                 </li>
 
                                 <li>
-                                    <Link className="hover:text-blue-600">Login</Link>
+                                    <Link to={'/login'} className="hover:text-blue-600">Login</Link>
                                 </li>
 
                                 <li>
-                                    <Link className="hover:text-blue-600">Registration</Link>
+                                    <Link to={'/registration'} className="hover:text-blue-600">Registration</Link>
                                 </li>
                             </ul>
                         </div>
