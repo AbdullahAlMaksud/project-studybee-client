@@ -68,7 +68,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="fixed font-poppins h-16 lg:min-h-20 w-full bg-transparent backdrop-blur-md dark:text-white dark:backdrop-blur-xl rounded-b-sm shadow shadow-black/10 z-50">
+        <div className="fixed font-poppins h-16 lg:min-h-20 w-full bg-transparent backdrop-blur-xl dark:text-white dark:backdrop-blur-xl rounded-b-sm shadow shadow-black/10 z-50">
             <div className="w-11/12  container mx-auto">
                 <div className="flex ">
                     <div className="flex justify-start items-center h-16 lg:min-h-20">
