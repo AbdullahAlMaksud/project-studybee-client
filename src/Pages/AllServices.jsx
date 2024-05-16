@@ -30,7 +30,7 @@ const AllServices = () => {
         getCount()
     }, [search])
 
-    console.log(count)
+    // console.log(count)
     const numberOfPages = Math.ceil(count / cardPerPage)
     const pages = [...Array(numberOfPages).keys()].map(element => element + 1)
 
@@ -52,7 +52,6 @@ const AllServices = () => {
                 <title>StudyBee | All Services </title>
             </Helmet>
             <h2 className='text-4xl text-center font-bold mb-10 font-poppins'>All Services</h2>
-
             <div className='w-full'>
                 <form onSubmit={handleSearch}>
                     <div className='flex justify-center items-center'>
@@ -65,15 +64,11 @@ const AllServices = () => {
                     </div>
                 </form>
             </div>
-
-
-            <div className='grid grid-cols-1 gap-4 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:min-h-[950px]'>
+            <div className='grid grid-cols-1 gap-4 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 md:min-h-[950px]'>
                 {services.map(service => (
                     <ServicesCard key={service._id} service={service} />
                 ))}
             </div>
-
-
             <div className='w-full flex justify-center items-center flex-wrap my-10'>
                 <div className='flex gap-5'>
                     <button className='flex justify-center items-center gap-2 px-3 rounded-md border-blue-300 dark:border-white w-32 border-b-2' disabled={currentPage === 1} onClick={() => { handlePagination(currentPage - 1) }}><span><FaArrowLeft /></span>Previous</button>

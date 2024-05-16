@@ -10,9 +10,7 @@ const Profile = () => {
     const [newUser, setNewUser] = useState({ ...user });
     const successToast = () => toast.success('Profile Updated');
     const errorToast = () => toast.error('Profile Updated Failed');
-
     const [edit, setEdit] = useState(!true);
-
     const handleEdit = () => {
         setEdit(!edit)
         console.log(edit)
@@ -31,7 +29,7 @@ const Profile = () => {
         updateProfile(user, updateInfo)
             .then(() => {
                 setNewUser(updateInfo);
-                console.log('Update Complete')
+                // console.log('Update Complete')
                 successToast()
             })
             .catch((error) => {
@@ -51,12 +49,8 @@ const Profile = () => {
                     <input onChange={handleEdit} name={!edit} type="checkbox" className="toggle" />
                 </label>
             </div>
-
             <form className="w-full m-5 p-5 flex flex-col justify-center items-center" onSubmit={handleUpdateProfile}>
-
                 <img className="rounded-full shadow-md w-20  mt-5 md:mt-0 md:w-52" src={user?.photoURL} alt="" />
-
-
                 <div className="bg-white dark:bg-blue-950 px-5 py-3 my-5 rounded-xl md:min-w-96 grid grid-cols-12">
                     <label className="col-span-3 font-semibold">
                         Name:
@@ -76,9 +70,7 @@ const Profile = () => {
                     <input className="ml-2 dark:bg-blue-950 col-span-9 " type="text" defaultValue={user?.email} disabled />
                 </div>
                 <input className={edit ? `bg-blue-600 text-white dark:bg-blue-500 px-10 py-3 rounded-xl md:min-w-96 disabled:bg-gray-500` : `hidden`} type="submit" value="Update" disabled={!edit} />
-
             </form>
-
         </div>
     );
 };

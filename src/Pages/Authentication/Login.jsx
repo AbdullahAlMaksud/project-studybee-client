@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -68,7 +69,9 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet>
             <title>StudyBee | Login</title>
+            </Helmet>
             <div className=" bg-white/20 backdrop-blur-md dark:bg-gray-900">
                 <div className="flex justify-center min-h-screen">
                     <div className="hidden bg-cover lg:block lg:w-2/3" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1616763355603-9755a640a287?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)' }}>
@@ -76,7 +79,7 @@ const Login = () => {
                             <div>
                                 <h2 className="text-2xl font-bold text-white sm:text-3xl">StudyBee | Login</h2>
                                 <p className="max-w-xl mt-3 text-gray-300">
-                                Sign in to connect with a diverse network of experienced tutors who can help you master any subject, from math and science to history and languages.</p>
+                                    Sign in to connect with a diverse network of experienced tutors who can help you master any subject, from math and science to history and languages.</p>
                             </div>
                         </div>
                     </div>

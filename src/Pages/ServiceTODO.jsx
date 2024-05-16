@@ -1,19 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import axios from 'axios';
 import { FaRegSadTear } from 'react-icons/fa';
-import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 
 const ServiceToDo = () => {
+    const { user } = useContext(AuthContext);
     const [bookedServices, setBookServices] = useState([]);
     const servicesOltStatus = bookedServices.map(service => (service.serviceStatus)).toString();
     const [newServiceStatus, setNewServicesStatus] = useState('')
-
-    const serId = bookedServices.map(service => (service._id));
-    // console.log(serId)
-    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const getData = async () => {
@@ -22,40 +18,31 @@ const ServiceToDo = () => {
         }
         getData()
     }, [user])
-    
+
     useEffect(() => {
         setNewServicesStatus(servicesOltStatus)
     }, [servicesOltStatus])
 
-    // console.log('this is from state', newServiceStatus)
+    const handleStatus = (e, serviceId) => {
+        const newStatus = e.target.value;
+        setNewServicesStatus(newStatus)
+        const data = {
+            newStatus: newStatus
+        };
+        // console.log(newServiceStatus)
+        // console.log(data)
 
-
-
-
-    const handleStatus = (e) => {
-        // e.preventDefault()
-        const working = e.target.value;
-        // console.log(e._id)
-        // console.log(working)
-        setNewServicesStatus(working)
-        const data ={working}
-        console.log(newServiceStatus)
-
-        fetch(`${import.meta.env.VITE_SERVER}/booking/${serId}`, {
-            method: 'PATCH',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.modifiedCount) {
-                    toast.success('Service Status Has been Changed.')
+        axios.patch(`${import.meta.env.VITE_SERVER}/booking/${serviceId}`, data)
+            .then(response => {
+                console.log(response.data);
+                if (response.data.modifiedCount) {
+                    toast.success('Service Status Has been Changed.');
                 }
             })
+            .catch(error => {
+                console.error('Error updating service status:', error);
+            });
     }
-
-
 
     return (
         <div className='w-11/12 container mx-auto my-10'>
@@ -127,11 +114,6 @@ const ServiceToDo = () => {
 
                                                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <div className="flex items-center gap-x-2">
-                                                            {/* <img
-                                                className="object-cover w-8 h-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                                                alt=""
-                                            /> */}
                                                             <div>
                                                                 <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                                                                     {services.userName}
@@ -144,10 +126,18 @@ const ServiceToDo = () => {
                                                             </div>
                                                         </div>
                                                     </td>
+
                                                     <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                        <select onChange={handleStatus} className={newServiceStatus == 'pending' && "inline-flex items-center px-3 py-0.5 rounded-full gap-x-2 text-red-500 bg-red-100/60 capitalize dark:bg-gray-800" || "inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-black-600 bg-black-100/90 capitalize dark:bg-gray-800"} defaultValue={services.serviceStatus} >
-
-
+                                                        <select
+                                                            onChange={(e) => handleStatus(e, services._id)}
+                                                            className={
+                                                                newServiceStatus === 'pending'
+                                                                    ? "inline-flex items-center px-3 py-0.5 rounded-full gap-x-2 text-red-500 bg-red-100/60 capitalize dark:bg-gray-800"
+                                                                    : newServiceStatus === 'working'
+                                                                        ? "inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-black-600 bg-yellow-300/90 capitalize dark:bg-yellow-400/20 dark:text-yellow-500  dark:bg-gray-800"
+                                                                        : "inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-black-600 bg-blue-300/90 dark:bg-blue-600/20 dark:text-blue-600 capitalize dark:bg-gray-800"
+                                                            }
+                                                            defaultValue={services.serviceStatus} >
                                                             <option defaultValue={'pending'} disabled={newServiceStatus === "pending"}>
                                                                 pending
                                                             </option>
@@ -176,10 +166,7 @@ const ServiceToDo = () => {
                         </div>
                     </div>
                 </div>
-
             </section>
-
-
         </div>
     );
 };

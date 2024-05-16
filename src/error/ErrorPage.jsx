@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 
 const ErrorPage = () => {
@@ -5,8 +6,12 @@ const ErrorPage = () => {
     const handleGoBack = () => {
         navigate(-1);
     }
+
     return (
         <div>
+            <Helmet>
+                <title>StudyBee | 404</title>
+            </Helmet>
             <section className="bg-transparent">
                 <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
                     <div className="w-full lg:w-1/2">

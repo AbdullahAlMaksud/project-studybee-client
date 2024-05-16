@@ -29,7 +29,6 @@ This project is a full-stack web application built for educational service shari
 - **Node.js**: JavaScript runtime for server-side development.
 - **Express.js**: Web application framework for Node.js.
 - **MongoDB**: NoSQL database for storing application data.
-- **Firebase**: Backend as a Service for user authentication, real-time database, and cloud storage.
 
 ## Development Setup
 

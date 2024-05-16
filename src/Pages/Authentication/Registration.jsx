@@ -1,7 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const Registration = () => {
     const navigate = useNavigate()
@@ -12,6 +13,7 @@ const Registration = () => {
         setUser,
         updateUserInfo,
         user,
+        loading,
         signInWithGoogole,
     } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false)
@@ -20,6 +22,25 @@ const Registration = () => {
         setShowPass(e.target.checked)
         console.log(showPass)
     }
+
+    const googleHandler = async () => {
+        try {
+            const result = await signInWithGoogole();
+            console.log(result.user)
+            toast.success('Log In Successfully')
+            navigate(from, { replace: true })
+        }
+        catch (error) {
+            console.log(error)
+            toast.error(error?.message)
+        }
+    }
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [navigate, user])
 
     const handleRegistration = async e => {
         e.preventDefault()
@@ -59,11 +80,17 @@ const Registration = () => {
         console.log({ name, photo, email, password })
     }
 
+    if (user || loading) {
+        return
+    }
+
     return (
         <div>
+            <Helmet>
             <title>StudyBee | Registration</title>
+            </Helmet>
             <div>
-                <div className=" bg-white/20 backdrop-blur-md dark:bg-gray-900/10 py-10 md:py-0">
+                <div className=" bg-white/20 backdrop-blur-md dark:bg-gray-900/10">
                     <div className="flex justify-center min-h-screen">
                         <div className="hidden bg-cover lg:block lg:w-2/3" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1616763355603-9755a640a287?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)' }}>
                             <div className="flex items-center lg:h-full px-20 bg-gray-900 bg-opacity-40">
@@ -76,7 +103,7 @@ const Registration = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+                        <div className="flex items-center w-full max-w-md px-6 py-10 mx-auto lg:w-2/6">
                             <div className="flex-1">
                                 <div className="text-center">
                                     <div className="flex justify-center mx-auto mt-3 lg:mt-0 text-gray-900 dark:text-gray-300 text-2xl font-semibold">
@@ -84,7 +111,7 @@ const Registration = () => {
                                     </div>
                                 </div>
 
-                                <a href="#" className="flex items-center justify-center px-6 py-3 mt-4 text-gray-900 transition-colors duration-300 transform border rounded-md dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900 border-gray-500 hover:border-gray-50 dark:hover:border-gray-600">
+                                <a onClick={googleHandler} href="#" className="flex items-center justify-center px-6 py-3 mt-4 text-gray-900 transition-colors duration-300 transform border rounded-md dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900 border-gray-500 hover:border-gray-50 dark:hover:border-gray-600">
                                     <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                                         <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
                                         <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z" fill="#FF3D00" />

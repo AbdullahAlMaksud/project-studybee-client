@@ -2,10 +2,10 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { FaRegSadTear } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const BookedServerByMe = () => {
     const [bookedServices, setBookServices] = useState([]);
-
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
@@ -14,19 +14,20 @@ const BookedServerByMe = () => {
             setBookServices(data)
         }
         getData()
-
     }, [user])
+    // console.log(bookedServices)
 
-    console.log(bookedServices)
     return (
         <div className='w-11/12 container mx-auto my-10'>
+            <Helmet>
+                <title>StudyBee | Booked By, {user?.displayName}</title>
+            </Helmet>
             {
                 bookedServices.length === 0 && <div className='flex flex-col justify-center items-center min-h-[calc(100vh-850px)] gap-2 '>
                     <FaRegSadTear className='text-7xl opacity-30' />
                     <h2 className='font-bold opacity-50'>Sorry! You have no booked services yet!</h2>
                 </div>
             }
-
             <section className={bookedServices.length === 0 && "hidden" || "container px-4 mx-auto"}>
                 <h2 className='text-3xl font-bold text-center my-10'>My Booked Service</h2>
                 <div className="flex flex-col">
@@ -67,7 +68,6 @@ const BookedServerByMe = () => {
                                             >
                                                 Date
                                             </th>
-
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
@@ -86,11 +86,6 @@ const BookedServerByMe = () => {
 
                                                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <div className="flex items-center gap-x-2">
-                                                            {/* <img
-                                                    className="object-cover w-8 h-8 rounded-full"
-                                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                                                    alt=""
-                                                /> */}
                                                             <div>
                                                                 <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                                                                     {services.providerName}
@@ -125,10 +120,7 @@ const BookedServerByMe = () => {
                         </div>
                     </div>
                 </div>
-
             </section>
-
-
         </div>
     );
 };

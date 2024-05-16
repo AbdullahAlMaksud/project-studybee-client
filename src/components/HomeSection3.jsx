@@ -1,5 +1,6 @@
 
 const HomeSection3 = () => {
+
     return (
         <div className="w-11/12 container mx-auto my-10">
             <section className="bg-transparent rounded-md shadow-black/40 shadow dark:bg-transparent">
@@ -7,11 +8,8 @@ const HomeSection3 = () => {
                     <h1 className="mt-2 text-2xl font-bold text-gray-800 md:text-3xl -rotate-2 dark:text-white">
                         Get in touch
                     </h1>
-
                 </div>
                 <div className="container px-6 mx-auto">
-
-
                     <div className="pb-10">
                         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 my-10">
                             <div className="flex flex-col justify-center items-center">
@@ -33,7 +31,6 @@ const HomeSection3 = () => {
                                         </svg>
                                     </span>
                                 </div>
-
                                 <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">
                                     Email
                                 </h2>
@@ -99,26 +96,24 @@ const HomeSection3 = () => {
                                     Phone
                                 </h2>
                                 <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                    Mon-Fri from 8am to 5pm.
+                                    Sun-Thu from 8am to 5pm.
                                 </p>
                                 <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">
                                     +880 (1767) 211795
                                 </p>
                             </div>
                         </div>
-
-
                         <div className="overflow-hidden rounded-lg lg:col-span-2 h-96 lg:h-[500px] shadow shadow-black">
                             <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3651.984821313919!2d90.39483863710484!3d23.74792067874461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1715831447092!5m2!1sen!2sbd"
                                 width="100%"
                                 height="100%"
-                                frameBorder={0}
-                                title="map"
-                                marginHeight={0}
-                                marginWidth={0}
-                                scrolling="no"
-                                src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed"
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
                             />
+
                         </div>
                     </div>
                 </div>

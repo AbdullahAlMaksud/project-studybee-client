@@ -10,8 +10,7 @@ const BookingServices = () => {
     const { user } = useContext(AuthContext)
     const service = useLoaderData()
     const { _id, imgURL, serviceName, price, providerEmail, providerName } = service;
-    console.log(user)
-
+    // console.log(user)
     // const [startDate, setStartDate] = useState(new Date());
     // console.log(startDate)
 
@@ -109,7 +108,6 @@ const BookingServices = () => {
                             <span className='text-lg font-semibold '>Special Instraction:</span>
                             <textarea type="text" name="instruction" className='w-full py-1 pl-3 border-blue-500 shadow-md border bg-white/60 rounded-md' placeholder='You can write here your others information.Like Address, Area, Customized service plan, etc...' />
                         </div>
-
                         <input type='submit' value={'Purchase'} className='col-span-2 btn btn-primary rounded-b-sm shadow-md' />
                     </div>
                 </div>

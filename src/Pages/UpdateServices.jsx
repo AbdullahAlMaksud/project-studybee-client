@@ -85,12 +85,10 @@ const UpdateServices = () => {
                     </div>
                     <div className='col-span-2 flex justify-between items-center border-t rounded-lg py-3 px-5 =py-1 bg-white/20 shadow-md'>
                         <img className='h-12 rounded-full object-cover' src={providerPhoto} alt="" />
-
                         <div>
                             <span className='font-semibold'>Provider Name:</span>
                             <h2 className=''>{providerName}</h2>
                         </div>
-
                         <div>
                             <span className='font-semibold'>Provider Email:</span>
                             <h2 className=''>{providerEmail}</h2>

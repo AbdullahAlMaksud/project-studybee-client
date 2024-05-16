@@ -1,17 +1,33 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import DarkMode from "../utilities/DarkMode";
 import { MdHome, MdMiscellaneousServices } from "react-icons/md";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 import 'react-tooltip/dist/react-tooltip.css'
 
 
 const Navbar = () => {
+    const dropdownRef = useRef(null);
     const { user, logOut } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     console.log('from nav', user)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            // Close dropdown menu if clicked outside of it
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const handleLogOut = () => {
         logOut();
@@ -46,21 +62,15 @@ const Navbar = () => {
         <div className="flex flex-col my-3 gap-3">
             <NavLink className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'} to={'/addServices'} >Add Service</NavLink>
             <NavLink to={`/services/managed-services`} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Manage Service</NavLink>
-
             <NavLink to={'services/my-booked-services'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Booked-Services</NavLink>
-
             <NavLink to={'/services/service-to-do'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Service-To-Do</NavLink>
         </div>
-
-
         <hr className="" />
         <div className="flex items-center justify-center gap-1 my-3">
             <NavLink to={'/'} className={({ isActive }) => isActive ? "font-medium border-b-2 border-transparent border-b-blue-900 hover:font-semibold p-1.5 rounded-sm dark:bg-gray-800 tooltip" : "font-medium border-b-2 border-transparent hover:border-b-blue-900 hover:font-semibold p-1.5 rounded-sm dark:bg-gray-800 tooltip"}
-
                 data-tip="Home"><MdHome className="text-xl" /></NavLink>
             <NavLink to={'/services'} className={({ isActive }) => isActive ? "font-medium border-b-2 border-transparent border-b-blue-900 hover:font-semibold p-1.5 rounded-sm dark:bg-gray-800 tooltip" : "font-medium border-b-2 border-transparent hover:border-b-blue-900 hover:font-semibold p-1.5 rounded-sm dark:bg-gray-800 tooltip"} data-tip="All Services"><MdMiscellaneousServices className="text-xl" /></NavLink>
             <NavLink className="font-medium border-b-2 border-transparent tooltip tooltip-top hover:border-b-blue-900 hover:font-semibold rounded-sm" data-tip="Dark Mode"><DarkMode /></NavLink>
-
         </div>
         <div>
             <button onClick={handleLogOut} className="bg-blue-700 text-white w-full py-2 rounded-sm">Log out</button>
@@ -70,7 +80,8 @@ const Navbar = () => {
     return (
         <div className="fixed font-poppins h-16 lg:min-h-20 w-full bg-transparent backdrop-blur-xl dark:text-white dark:backdrop-blur-xl rounded-b-sm shadow shadow-black/10 z-50">
             <div className="w-11/12  container mx-auto">
-                <div className="flex ">
+                <div className="flex">
+
                     <div className="flex justify-start items-center h-16 lg:min-h-20">
                         <Link className="text-2xl lg:text-3xl font-medium">Study<span className="text-white dark:text-slate-800">Bee</span></Link>
                     </div>
@@ -93,11 +104,9 @@ const Navbar = () => {
 
                         }
 
-
-
                         {/* DropDown Menu Button */}
                         {
-                            user && <div className="relative">
+                            user && <div className="relative" ref={dropdownRef}>
                                 {
                                     !isOpen ? <div className="flex rounded-sm border gap-1 md:py-0.5 md:px-0.5 bg-blue-900/30 shadow-sm shadow-black/40">
                                         <button onClick={handleDropdown} className="font-semibold text-white bg-blue-950 px-3 md:px-4 rounded-sm ">Dashboard</button>

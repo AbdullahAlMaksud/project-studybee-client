@@ -6,6 +6,7 @@ import { FaMapLocationDot } from 'react-icons/fa6';
 import { FaRegSadTear, FaUser } from 'react-icons/fa';
 
 import profile from '../../public/profile.png'
+import { Helmet } from 'react-helmet-async';
 
 const ManageService = () => {
     const [services, setService] = useState([])
@@ -20,7 +21,7 @@ const ManageService = () => {
             });
     }, [user])
 
-    console.log(services)
+    // console.log(services)
 
     const handleDelete = (_id) => {
         console.log(_id)
@@ -51,7 +52,6 @@ const ManageService = () => {
                                 setService(restOfData);
                             }
                         })
-
                 }
             }
             )
@@ -60,14 +60,16 @@ const ManageService = () => {
     return (
         <div className='container mx-auto w-11/12 mb-10'>
             <h2 className="pb-10 text-center text-3xl font-bold text-blue-950 dark:text-blue-50 mt-10 bg-[]">My Services</h2>
-            
+            <Helmet>
+                <title>StudyBee | Manage My Service</title>
+            </Helmet>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-            {
-                services.length === 0 && <div className='col-span-3 flex flex-col justify-center items-center min-h-[calc(100vh-500px)]  gap-2 '>
-                    <FaRegSadTear className='text-7xl opacity-30' />
-                    <h2 className='font-bold opacity-50'>Sorry! You Do not add any services yet!</h2>
-                </div>
-            }
+                {
+                    services.length === 0 && <div className='col-span-3 flex flex-col justify-center items-center min-h-[calc(100vh-500px)]  gap-2 '>
+                        <FaRegSadTear className='text-7xl opacity-30' />
+                        <h2 className='font-bold opacity-50'>Sorry! You Do not add any services yet!</h2>
+                    </div>
+                }
                 {
                     services.map(service =>
 
@@ -89,7 +91,6 @@ const ManageService = () => {
                                             </div>
                                         </div>
                                     </div>
-
                                     <div>
                                         <div>
                                             <h2 className='text-2xl font-bold  pb-2'>{service.serviceName}</h2>

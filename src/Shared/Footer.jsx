@@ -2,6 +2,7 @@ import { FaEnvelope, FaFacebook, FaGithub, FaLinkedin, FaPhone, FaTwitter } from
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+    
     return (
         <div className="min-h-[200px] bg-blue-700/10 backdrop-blur-md rounded-t-lg pt-10">
             <div className="w-11/12 mx-auto container">

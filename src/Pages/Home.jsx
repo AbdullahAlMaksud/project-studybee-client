@@ -8,6 +8,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const Home = () => {
     const services = useLoaderData()
+    
     return (
         <div>
             <Helmet>
