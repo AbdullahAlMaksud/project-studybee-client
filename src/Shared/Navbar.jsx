@@ -64,6 +64,7 @@ const Navbar = () => {
             <NavLink to={`/services/managed-services`} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Manage Service</NavLink>
             <NavLink to={'services/my-booked-services'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Booked-Services</NavLink>
             <NavLink to={'/services/service-to-do'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Service-To-Do</NavLink>
+            <NavLink to={'/services/blog-writing'} className={({ isActive }) => isActive ? 'bg-blue-950 text-white py-1 rounded-sm pl-2' : 'hover:bg-gray-800 hover:text-white py-1 rounded-sm pl-2'}>Write a Blog</NavLink>
         </div>
         <hr className="" />
         <div className="flex items-center justify-center gap-1 my-3">

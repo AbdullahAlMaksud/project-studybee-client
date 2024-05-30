@@ -16,6 +16,7 @@ import BookedServerByMe from "../Pages/BookedServerByMe";
 import ServiceTODO from "../Pages/ServiceTODO";
 import FAQ from "../Pages/FAQ";
 import About from "../Pages/About";
+import WritingBlog from "../Pages/WritingBlog";
 
 const router = createBrowserRouter([
     {
@@ -75,6 +76,12 @@ const router = createBrowserRouter([
             {
                 path: 'services/service-to-do',
                 element: <PrivateRoute><ServiceTODO /></PrivateRoute>
+            },
+            {
+                path: 'services/blog-writing',
+                element: <PrivateRoute><WritingBlog /></PrivateRoute>,
+                loader: () => fetch(`${import.meta.env.VITE_SERVER}/services`)
+            
             },
             {
                 path: '/faq',
