@@ -17,6 +17,7 @@ import ServiceTODO from "../Pages/ServiceTODO";
 import FAQ from "../Pages/FAQ";
 import About from "../Pages/About";
 import WritingBlog from "../Pages/WritingBlog";
+import Blog from "../Pages/Blog";
 
 const router = createBrowserRouter([
     {
@@ -90,6 +91,11 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About />
+            },
+            {
+                path: '/blog',
+                element: <Blog />,
+                loader: ()=>fetch(`${import.meta.env.VITE_SERVER}/blogs`)
             }
         ]
     },

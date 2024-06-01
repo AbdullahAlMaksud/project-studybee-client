@@ -46,6 +46,9 @@ const Navbar = () => {
             <NavLink className={({ isActive }) => isActive ? 'border-b-2 border-blue-800 font-medium' : 'hover:text-blue-600 hover:border-b hover:border-blue-800 '} to={'/services'}>All Services</NavLink>
         </li>
         <li>
+            <NavLink to={'/blog'}>Blog</NavLink>
+        </li>
+        <li>
             <NavLink to={'/about'}>About</NavLink>
         </li>
         <li>
