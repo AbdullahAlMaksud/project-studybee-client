@@ -1,55 +1,86 @@
-# Educational Service Sharing Website
-
-## Overview
+# Project StudyBee
 
 This project is a full-stack web application built for educational service sharing. It allows users to post tutoring services, and other users can purchase these services. The application utilizes various technologies on both the client and server sides.
 
+## Overview
+
+The Educational Service Sharing Website is designed to facilitate the sharing and purchasing of tutoring services. Users can securely sign up, log in, post services, and browse or purchase available services. The application includes admin functionality for managing users and services.
+
 ## Features
 
-- **User Authentication**: Users can sign up, log in, and manage their accounts securely.
-- **Service Posting**: Users can create posts for tutoring services they offer, including details like subject, price, availability, etc.
-- **Service Marketplace**: Other users can browse available services, view details, and purchase them.
-- **Admin Panel**: Admin functionality for managing users, services, etc.
+- **User Authentication:** Secure sign up, log in, and account management.
+- **Service Posting:** Create posts for tutoring services with details like subject, price, and availability.
+- **Service Marketplace:** Browse, view details, and purchase available services.
+- **Admin Panel:** Manage users and services.
 
-## Tech Stack
+## Technologies Used
 
 ### Frontend
 
-- **React**: Frontend framework for building dynamic user interfaces.
-- **Axios**: HTTP client for making API requests.
-- **Firebase**: Backend as a Service for user authentication, real-time database, and hosting.
-- **React Router DOM**: Library for routing in React applications.
-- **React Helmet Async**: Component for managing document head tags in React.
-- **React Hot Toast**: Toast notification library for React applications.
-- **React Icons**: Library for popular icon packs as React components.
-- **React Tooltip**: Tooltip component for React.
-- **Swiper**: Slider/carousel component for React.
+- **React:** For building dynamic user interfaces.
+- **Axios:** For making API requests.
+- **Firebase:** For user authentication, real-time database, and hosting.
+- **React Router DOM:** For routing in React applications.
+- **React Helmet Async:** For managing document head tags in React.
+- **React Hot Toast:** For toast notifications.
+- **React Icons:** For popular icon packs as React components.
+- **React Tooltip:** For tooltips.
+- **Swiper:** For sliders/carousels.
 
 ### Backend
-- **Node.js**: JavaScript runtime for server-side development.
-- **Express.js**: Web application framework for Node.js.
-- **MongoDB**: NoSQL database for storing application data.
 
-## Development Setup
+- **Node.js:** For server-side development.
+- **Express.js:** For building APIs and web servers.
+- **MongoDB:** For storing application data.
 
-1. Clone the repository.
-2. Install dependencies using `npm install`.
-3. Set up environment variables for Firebase, MongoDB, and other configurations.
-4. Run the development server using `npm run dev`.
-5. Access the application at `http://localhost:3000`.
+## Backend Repository:
+  - https://github.com/AbdullahAlMaksud/project-studybee-server
 
-## Project Links
+## Installation
 
-- **GitHub Repository (Client Side)**: [Client Repository](https://github.com/Porgramming-Hero-web-course/b9a11-client-side-AbdullahAlMaksud)
-- **GitHub Repository (Server Side)**: [Server Repository](https://github.com/Porgramming-Hero-web-course/b9a11-server-side-AbdullahAlMaksud)
-- **Project Live Link (Firebase)**: [Firebase Live Link](https://project-studybee.web.app/)
-- **Project Live Link (Netlify)**: [Netlify Live Link](https://studybee.netlify.app/)
+To get started with the development or deployment of this project, follow these steps:
 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Porgramming-Hero-web-course/b9a11-client-side-AbdullahAlMaksud.git
 
-## Contributing
+2. **Navigate to the project directory and install dependencies:**
+    ```bash
+    cd b9a11-client-side-AbdullahAlMaksud
+    npm install
+3. **Clone the backend repository:**
+    ```bash
+    git clone https://github.com/AbdullahAlMaksud/project-studybee-server.git
 
-Contributions are welcome! Feel free to open issues or submit pull requests to improve the application.
+4. **Navigate to the backend project directory and install dependencies:**
+    ```bash
+    cd project-studybee-server
+    npm install
+
+5. **Set up environment variables for Firebase, MongoDB, and other configurations.**
+
+6. **Run the development server:**
+    ```bash
+    npm run dev
+
+7. **Access the application at http://localhost:3000.**
+
+## Live Demo
+- Check out the live demo of the StudyBee project at: https://project-studybee.web.app.
+
+## Usage
+- Sign up or log in to your account.
+- Post your tutoring services with relevant details.
+- Browse and purchase available services from other users.
+- Admins can manage users and services through the admin panel.
+
+## Contribution
+Contributions are welcome! Please feel free to submit a Pull Request or open an issue to discuss any changes.
 
 ## License
+This project is licensed under the MIT License.
 
-This project is licensed under the [MIT License](LICENSE).
+### Developed by Abdullah Al Maksud
+- Portfolio: https://portfolio-abdullahalmaksud.web.app
+- Email: maksud.workspace@gmail.com
+- Phone: +880 1767 211795
